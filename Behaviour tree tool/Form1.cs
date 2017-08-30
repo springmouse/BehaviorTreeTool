@@ -79,5 +79,15 @@ namespace Behaviour_tree_tool
                 }
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void updateTimer_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

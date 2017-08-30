@@ -34,12 +34,13 @@
             this.toolStripCompositeNodes = new System.Windows.Forms.ToolStripDropDownButton();
             this.sequenceNodeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.slectorNodeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomSlectorNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.switchSlectorNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownQuestionsAndActions = new System.Windows.Forms.ToolStripDropDownButton();
             this.actionNodeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.conditionNodeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.randomSlectorNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.switchSlectorNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.decoratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,8 @@
             this.sequenceNodeToolStrip,
             this.slectorNodeToolStrip,
             this.randomSlectorNodeToolStripMenuItem,
-            this.switchSlectorNodeToolStripMenuItem});
+            this.switchSlectorNodeToolStripMenuItem,
+            this.decoratorToolStripMenuItem});
             this.toolStripCompositeNodes.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCompositeNodes.Image")));
             this.toolStripCompositeNodes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripCompositeNodes.Name = "toolStripCompositeNodes";
@@ -81,6 +83,18 @@
             this.slectorNodeToolStrip.Name = "slectorNodeToolStrip";
             this.slectorNodeToolStrip.Size = new System.Drawing.Size(190, 22);
             this.slectorNodeToolStrip.Text = "Slector Node";
+            // 
+            // randomSlectorNodeToolStripMenuItem
+            // 
+            this.randomSlectorNodeToolStripMenuItem.Name = "randomSlectorNodeToolStripMenuItem";
+            this.randomSlectorNodeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.randomSlectorNodeToolStripMenuItem.Text = "Random Slector Node";
+            // 
+            // switchSlectorNodeToolStripMenuItem
+            // 
+            this.switchSlectorNodeToolStripMenuItem.Name = "switchSlectorNodeToolStripMenuItem";
+            this.switchSlectorNodeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.switchSlectorNodeToolStripMenuItem.Text = "Switch Slector Node";
             // 
             // toolStripDropDownQuestionsAndActions
             // 
@@ -106,22 +120,16 @@
             this.conditionNodeToolStrip.Size = new System.Drawing.Size(159, 22);
             this.conditionNodeToolStrip.Text = "Condition Node";
             // 
-            // randomSlectorNodeToolStripMenuItem
-            // 
-            this.randomSlectorNodeToolStripMenuItem.Name = "randomSlectorNodeToolStripMenuItem";
-            this.randomSlectorNodeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.randomSlectorNodeToolStripMenuItem.Text = "Random Slector Node";
-            // 
-            // switchSlectorNodeToolStripMenuItem
-            // 
-            this.switchSlectorNodeToolStripMenuItem.Name = "switchSlectorNodeToolStripMenuItem";
-            this.switchSlectorNodeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.switchSlectorNodeToolStripMenuItem.Text = "Switch Slector Node";
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // decoratorToolStripMenuItem
+            // 
+            this.decoratorToolStripMenuItem.Name = "decoratorToolStripMenuItem";
+            this.decoratorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.decoratorToolStripMenuItem.Text = "Decorator";
             // 
             // Form2
             // 
@@ -150,5 +158,6 @@
         private System.Windows.Forms.ToolStripMenuItem randomSlectorNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem switchSlectorNodeToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem decoratorToolStripMenuItem;
     }
 }

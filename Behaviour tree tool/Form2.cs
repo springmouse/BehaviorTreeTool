@@ -16,6 +16,8 @@ namespace Behaviour_tree_tool
 
         private Node m_slectedNodeType = null;
 
+        private Mouse_Controler m_mouseControler = new Mouse_Controler();
+
         public Form2()
         {
             InitializeComponent();

@@ -13,12 +13,20 @@ namespace Behaviour_tree_tool
 {
     public partial class Form1 : Form
     {
+        private List<Keys> m_keyCurrentlyPressed = new List<Keys>();
+
         public Form1()
         {
+            KeyPreview = true;
             InitializeComponent();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewForm();
+        }
+
+        private void NewForm()
         {
             Form2 newMDIChild = new Form2();
 
@@ -87,7 +95,27 @@ namespace Behaviour_tree_tool
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
+            
+        }
+        
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!m_keyCurrentlyPressed.Contains((Keys)e.KeyValue))
+            {
+                m_keyCurrentlyPressed.Add((Keys)e.KeyValue);
+            }
 
+            if (m_keyCurrentlyPressed.Contains(Keys.ControlKey) 
+                && m_keyCurrentlyPressed.Contains(Keys.ShiftKey) 
+                && m_keyCurrentlyPressed.Contains(Keys.N))
+            {
+                NewForm();
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            m_keyCurrentlyPressed.Remove((Keys)e.KeyValue);
         }
     }
 }

@@ -18,6 +18,10 @@ namespace Behaviour_tree_tool
 
         private int sx, sy, lx, ly;
 
+        private int px, py;
+
+        private bool m_isHealdDown = false;
+
         public Form2()
         {
             InitializeComponent();
@@ -132,36 +136,65 @@ namespace Behaviour_tree_tool
         private void sequenceNodeToolStrip_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.SEQUENCECOMPOSITE;
+            m_mouse.m_slectedNodes.Clear();
+            m_mouse.m_isDragging = false;
         }
 
         private void slectorNodeToolStrip_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.SLECTORCOMPOSITE;
+            m_mouse.m_slectedNodes.Clear();
+            m_mouse.m_isDragging = false;
         }
         
         private void decoratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.DECORATOR;
+            m_mouse.m_slectedNodes.Clear();
+            m_mouse.m_isDragging = false;
         }
 
         private void randomSlectorNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.RANDOMSLECTOR;
+            m_mouse.m_slectedNodes.Clear();
+            m_mouse.m_isDragging = false;
         }
 
         private void switchSlectorNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.SWITCHSLECTOR;
+            m_mouse.m_slectedNodes.Clear();
+            m_mouse.m_isDragging = false;
         }
 
         private void actionNodeToolStrip_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.ACTIONNODE;
+            m_mouse.m_slectedNodes.Clear();
+            m_mouse.m_isDragging = false;
         }
 
         private void conditionNodeToolStrip_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.CONDITIONNODE;
+            m_mouse.m_slectedNodes.Clear();
+            m_mouse.m_isDragging = false;
+        }
+
+        private void Form2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (m_mouse.m_slectedNodes.Count() > 0 && e.KeyCode == Keys.Delete)
+            {
+                foreach (Node node in m_mouse.m_slectedNodes)
+                {
+                    m_nodes.Remove(node);
+                }
+
+                m_mouse.m_slectedNodes.Clear();
+
+                this.Refresh();
+            }
         }
 
         private void Form2_MouseDown(object sender, MouseEventArgs e)
@@ -171,7 +204,6 @@ namespace Behaviour_tree_tool
 
         private void Form2_MouseMove(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left && m_mouse.m_slectedNodes.Count() <= 0 && m_mouse.m_nodeToPlace == NodeTypes.NULL)
             {
                 if (m_mouse.m_isDragging == false && m_mouse.m_slectedNodes.Count() <= 0)
@@ -211,15 +243,35 @@ namespace Behaviour_tree_tool
 
             if (m_mouse.m_slectedNodes.Count > 0 && e.Button == MouseButtons.Left)
             {
-                foreach (Node node in m_mouse.m_slectedNodes)
+                if (m_isHealdDown == false)
                 {
-                    node.m_rect.X += ((e.X - node.m_rect.X) - (int)(node.m_rect.Width * 0.5f));
-                    node.m_rect.Y += ((e.Y - node.m_rect.Y) - (int)(node.m_rect.Height * 0.5f));
+                    SlectNode(e);
+
+                    if (m_mouse.m_slectedNodes.Count <= 0)
+                    {
+                        return;
+                    }
                 }
 
+                foreach (Node node in m_mouse.m_slectedNodes)
+                {
+                    node.m_rect.X += (int)((e.X - px));
+                    node.m_rect.Y += (int)((e.Y - py));
+                }
                 this.Refresh();
-                return;
+
+                px = e.X;
+                py = e.Y;
+
+                m_isHealdDown = true;
             }
+            else
+            {
+                m_isHealdDown = false;
+            }
+            
+            px = e.X;
+            py = e.Y;
         }
 
         public void SlectNode(MouseEventArgs e)

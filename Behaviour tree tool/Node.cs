@@ -95,59 +95,137 @@ namespace Behaviour_tree_tool
 
         public SlectorComposite()
         {
+
+        }
+
+        public override void OnDraw(PaintEventArgs e)
+        {
+            SetPoints();
+
+            Graphics g = e.Graphics;
+
+            Brush brush = new SolidBrush(Color.Blue);
+            g.FillPolygon(brush, m_pointF);
+        }
+
+        public void SetPoints()
+        {
             m_pointF[0].X = m_rect.X;
             m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
 
             m_pointF[1].X = m_rect.X + (m_rect.Width * 0.5f);
             m_pointF[1].Y = m_rect.Y;
 
-            m_pointF[0].X = m_rect.X + (m_rect.Width * 0.5f);
-            m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
+            m_pointF[2].X = m_rect.X + (m_rect.Width);
+            m_pointF[2].Y = m_rect.Y + (m_rect.Height * 0.5f);
 
 
-            m_pointF[0].X = m_rect.X + (m_rect.Width * 0.5f);
-            m_pointF[0].Y = m_rect.Y + (m_rect.Height);
-        }
-        
-        public override void OnDraw(PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-
-            Brush brush = new SolidBrush(Color.Blue);
-            g.FillPolygon(brush, m_pointF);
+            m_pointF[3].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[3].Y = m_rect.Y + (m_rect.Height);
         }
     }
 
     public class DecoratorComposite : Node
     {
+        private PointF[] m_pointF = new PointF[6];
+
         public DecoratorComposite() { }
 
         public override void OnDraw(PaintEventArgs e)
         {
+            SetPoints();
+
             Graphics g = e.Graphics;
 
+            Brush brush = new SolidBrush(Color.RosyBrown);
+            g.FillPolygon(brush, m_pointF);
+        }
+
+        public void SetPoints()
+        {
+            m_pointF[0].X = m_rect.X;
+            m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+            m_pointF[1].X = m_rect.X + (m_rect.Width * 0.2f);
+            m_pointF[1].Y = m_rect.Y;
+
+            m_pointF[2].X = m_rect.X + (m_rect.Width * 0.8f);
+            m_pointF[2].Y = m_rect.Y;
+            
+            m_pointF[3].X = m_rect.X + (m_rect.Width);
+            m_pointF[3].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+            m_pointF[4].X = m_rect.X + (m_rect.Width * 0.8f);
+            m_pointF[4].Y = m_rect.Y + (m_rect.Height);
+
+            m_pointF[5].X = m_rect.X + (m_rect.Width * 0.2f);
+            m_pointF[5].Y = m_rect.Y + (m_rect.Height);
         }
     }
 
     public class RandomSlector : Node
     {
+        private PointF[] m_pointF = new PointF[4];
+
         public RandomSlector() { }
 
         public override void OnDraw(PaintEventArgs e)
         {
+            SetPoints();
+
             Graphics g = e.Graphics;
 
+            Brush brush = new SolidBrush(Color.LightBlue);
+            g.FillPolygon(brush, m_pointF);
+        }
+
+        public void SetPoints()
+        {
+            m_pointF[0].X = m_rect.X;
+            m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+            m_pointF[1].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[1].Y = m_rect.Y;
+
+            m_pointF[2].X = m_rect.X + (m_rect.Width);
+            m_pointF[2].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+
+            m_pointF[3].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[3].Y = m_rect.Y + (m_rect.Height);
         }
     }
 
     public class SwitchSlector : Node
     {
-        public SwitchSlector() { }
+        private PointF[] m_pointF = new PointF[4];
 
+        public SwitchSlector() { }
+        
         public override void OnDraw(PaintEventArgs e)
         {
+            SetPoints();
+
             Graphics g = e.Graphics;
 
+            Brush brush = new SolidBrush(Color.Cyan);
+            g.FillPolygon(brush, m_pointF);
+        }
+
+        public void SetPoints()
+        {
+            m_pointF[0].X = m_rect.X;
+            m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+            m_pointF[1].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[1].Y = m_rect.Y;
+
+            m_pointF[2].X = m_rect.X + (m_rect.Width);
+            m_pointF[2].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+
+            m_pointF[3].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[3].Y = m_rect.Y + (m_rect.Height);
         }
     }
 

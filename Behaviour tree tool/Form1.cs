@@ -26,6 +26,16 @@ namespace Behaviour_tree_tool
             NewForm();
         }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFile();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
         private void NewForm()
         {
             Form2 newMDIChild = new Form2();
@@ -34,7 +44,32 @@ namespace Behaviour_tree_tool
 
             newMDIChild.Show();
         }
+        
+        public void SaveFile()
+        {
+            Stream myStream;
 
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+
+                    myStream.Close();
+                }
+            }
+        }
+        
+        public void OpenFile()
+        {
+
+        }
+        
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -42,50 +77,12 @@ namespace Behaviour_tree_tool
 
         private void pastToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form activeChild = this.ActiveMdiChild;
-
-            if (activeChild != null)
-            {
-                try
-                {
-                    RichTextBox theBox = (RichTextBox)activeChild.ActiveControl;
-                    if (theBox != null)
-                    {
-                        IDataObject data = Clipboard.GetDataObject();
-
-                        if (data.GetDataPresent(DataFormats.Text))
-                        {
-                            theBox.SelectedText = data.GetData(DataFormats.Text).ToString();
-                        }
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("You need to slelect the RichTextBox.");
-                }
-            }
-
+            
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form activeChild = this.ActiveMdiChild;
-
-            if (activeChild != null)
-            {
-                try
-                {
-                    RichTextBox theBox = (RichTextBox)activeChild.ActiveControl;
-                    if (theBox != null)
-                    {
-                        Clipboard.SetDataObject(theBox.SelectedText);
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("You need to slelect the RichTextBox.");
-                }
-            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -110,6 +107,18 @@ namespace Behaviour_tree_tool
                 && m_keyCurrentlyPressed.Contains(Keys.N))
             {
                 NewForm();
+            }
+
+            if (m_keyCurrentlyPressed.Contains(Keys.ControlKey)
+                && m_keyCurrentlyPressed.Contains(Keys.S))
+            {
+                SaveFile();
+            }
+
+            if (m_keyCurrentlyPressed.Contains(Keys.ControlKey)
+                && m_keyCurrentlyPressed.Contains(Keys.O))
+            {
+                OpenFile();
             }
         }
 

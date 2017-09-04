@@ -9,12 +9,7 @@ using System.Windows.Forms;
 namespace Behaviour_tree_tool
 {
     public class Node
-    {
-        public struct Rect
-        {
-            public int x, y, width, height;
-        }
-
+    {        
         public Node m_parent = null;
         public List<Node> m_children = new List<Node>();
 
@@ -22,14 +17,27 @@ namespace Behaviour_tree_tool
         public string m_description = "Default Description";
         public string m_nodeType = "Null";
 
-        public Rect m_rect;
+        public Rectangle m_rect;
 
         public Node()
         {
-            m_rect.x = 0;
-            m_rect.y = 0;
-            m_rect.width = 0;
-            m_rect.height = 0;
+
+            m_rect.X = 0;
+            m_rect.Y = 0;
+            m_rect.Width = 100;
+            m_rect.Height = 100;
+        }
+
+        public bool CheckIfClickedIn(int x, int y)
+        {
+
+            if (m_rect.X < x && (m_rect.X + m_rect.Width) > x &&
+                m_rect.Y < y && (m_rect.Y + m_rect.Height) > y)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public virtual void OnDraw(PaintEventArgs e) { }
@@ -43,36 +51,104 @@ namespace Behaviour_tree_tool
     public class ActionNode : Node
     {
         public ActionNode() { }
+
+
+
+        public override void OnDraw(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            Brush brush = new SolidBrush(Color.Yellow);
+            g.FillPie(brush, m_rect, 0.0f, 360.0f);
+        }
     }
 
     public class ConditionNode : Node
     {
         public ConditionNode() { }
+
+        public override void OnDraw(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            Brush brush = new SolidBrush(Color.Green);
+            g.FillPie(brush, m_rect, 0.0f, 360.0f);
+        }
     }
 
     public class SequenceComposite : Node
     {
         public SequenceComposite() { }
+
+        public override void OnDraw(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            Brush brush = new SolidBrush(Color.Blue);
+            g.FillRectangle(brush, m_rect);
+        }
     }
 
     public class SlectorComposite : Node
     {
-        public SlectorComposite() { }
+        private PointF[] m_pointF = new PointF[4];
+
+        public SlectorComposite()
+        {
+            m_pointF[0].X = m_rect.X;
+            m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+            m_pointF[1].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[1].Y = m_rect.Y;
+
+            m_pointF[0].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
+
+
+            m_pointF[0].X = m_rect.X + (m_rect.Width * 0.5f);
+            m_pointF[0].Y = m_rect.Y + (m_rect.Height);
+        }
+        
+        public override void OnDraw(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            Brush brush = new SolidBrush(Color.Blue);
+            g.FillPolygon(brush, m_pointF);
+        }
+    }
+
+    public class DecoratorComposite : Node
+    {
+        public DecoratorComposite() { }
+
+        public override void OnDraw(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+        }
     }
 
     public class RandomSlector : Node
     {
         public RandomSlector() { }
+
+        public override void OnDraw(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+        }
     }
 
     public class SwitchSlector : Node
     {
         public SwitchSlector() { }
-    }
 
-    public class Decorator : Node
-    {
-        public Decorator() { }
+        public override void OnDraw(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+        }
     }
 
 }

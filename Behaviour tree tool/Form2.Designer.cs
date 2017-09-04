@@ -36,11 +36,11 @@
             this.slectorNodeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.randomSlectorNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchSlectorNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decoratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownQuestionsAndActions = new System.Windows.Forms.ToolStripDropDownButton();
             this.actionNodeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.conditionNodeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.decoratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             this.toolStripDropDownQuestionsAndActions});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(32, 262);
+            this.toolStrip1.Size = new System.Drawing.Size(30, 262);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -68,7 +68,7 @@
             this.toolStripCompositeNodes.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCompositeNodes.Image")));
             this.toolStripCompositeNodes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripCompositeNodes.Name = "toolStripCompositeNodes";
-            this.toolStripCompositeNodes.Size = new System.Drawing.Size(29, 20);
+            this.toolStripCompositeNodes.Size = new System.Drawing.Size(27, 20);
             this.toolStripCompositeNodes.Text = "Composite Nodes";
             // 
             // sequenceNodeToolStrip
@@ -83,18 +83,28 @@
             this.slectorNodeToolStrip.Name = "slectorNodeToolStrip";
             this.slectorNodeToolStrip.Size = new System.Drawing.Size(190, 22);
             this.slectorNodeToolStrip.Text = "Slector Node";
+            this.slectorNodeToolStrip.Click += new System.EventHandler(this.slectorNodeToolStrip_Click);
             // 
             // randomSlectorNodeToolStripMenuItem
             // 
             this.randomSlectorNodeToolStripMenuItem.Name = "randomSlectorNodeToolStripMenuItem";
             this.randomSlectorNodeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.randomSlectorNodeToolStripMenuItem.Text = "Random Slector Node";
+            this.randomSlectorNodeToolStripMenuItem.Click += new System.EventHandler(this.randomSlectorNodeToolStripMenuItem_Click);
             // 
             // switchSlectorNodeToolStripMenuItem
             // 
             this.switchSlectorNodeToolStripMenuItem.Name = "switchSlectorNodeToolStripMenuItem";
             this.switchSlectorNodeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.switchSlectorNodeToolStripMenuItem.Text = "Switch Slector Node";
+            this.switchSlectorNodeToolStripMenuItem.Click += new System.EventHandler(this.switchSlectorNodeToolStripMenuItem_Click);
+            // 
+            // decoratorToolStripMenuItem
+            // 
+            this.decoratorToolStripMenuItem.Name = "decoratorToolStripMenuItem";
+            this.decoratorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.decoratorToolStripMenuItem.Text = "Decorator";
+            this.decoratorToolStripMenuItem.Click += new System.EventHandler(this.decoratorToolStripMenuItem_Click);
             // 
             // toolStripDropDownQuestionsAndActions
             // 
@@ -105,7 +115,7 @@
             this.toolStripDropDownQuestionsAndActions.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownQuestionsAndActions.Image")));
             this.toolStripDropDownQuestionsAndActions.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownQuestionsAndActions.Name = "toolStripDropDownQuestionsAndActions";
-            this.toolStripDropDownQuestionsAndActions.Size = new System.Drawing.Size(29, 20);
+            this.toolStripDropDownQuestionsAndActions.Size = new System.Drawing.Size(27, 20);
             this.toolStripDropDownQuestionsAndActions.Text = "Questions And Actions";
             // 
             // actionNodeToolStrip
@@ -113,23 +123,19 @@
             this.actionNodeToolStrip.Name = "actionNodeToolStrip";
             this.actionNodeToolStrip.Size = new System.Drawing.Size(159, 22);
             this.actionNodeToolStrip.Text = "Action Node";
+            this.actionNodeToolStrip.Click += new System.EventHandler(this.actionNodeToolStrip_Click);
             // 
             // conditionNodeToolStrip
             // 
             this.conditionNodeToolStrip.Name = "conditionNodeToolStrip";
             this.conditionNodeToolStrip.Size = new System.Drawing.Size(159, 22);
             this.conditionNodeToolStrip.Text = "Condition Node";
+            this.conditionNodeToolStrip.Click += new System.EventHandler(this.conditionNodeToolStrip_Click);
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // decoratorToolStripMenuItem
-            // 
-            this.decoratorToolStripMenuItem.Name = "decoratorToolStripMenuItem";
-            this.decoratorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.decoratorToolStripMenuItem.Text = "Decorator";
             // 
             // Form2
             // 
@@ -140,6 +146,9 @@
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseMove);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -9,11 +9,11 @@ using System.Windows.Forms;
 namespace Behaviour_tree_tool
 {
     public class Node
-    {        
-        public Node m_parent = null;
+    {
+        public List<Node> m_parent = new List<Node>();
         public List<Node> m_children = new List<Node>();
 
-        public string m_node = "Null";
+        public int m_node = 0;
         public string m_description = "Default Description";
         public string m_nodeType = "Null";
 
@@ -42,15 +42,23 @@ namespace Behaviour_tree_tool
 
         public virtual void OnDraw(PaintEventArgs e) { }
 
+        public virtual void AssignParent() { }
+        public virtual void AssignChild() { }
+
+        public float SqrMagnatude(int x, int y)
+        {
+            return ((x * x) + (y*y));
+        }
+
         public virtual void WriteToCPP() { }
         public virtual void WriteToCS() { }
         public virtual void WriteToJava() { }
         public virtual void WriteToPython() { }
     }
-
+    
     public class ActionNode : Node
     {
-        public ActionNode() { }
+        public ActionNode() { m_nodeType = "Action Node"; }
 
 
 
@@ -65,7 +73,7 @@ namespace Behaviour_tree_tool
 
     public class ConditionNode : Node
     {
-        public ConditionNode() { }
+        public ConditionNode() { m_nodeType = "Condition Node"; }
 
         public override void OnDraw(PaintEventArgs e)
         {
@@ -78,7 +86,7 @@ namespace Behaviour_tree_tool
 
     public class SequenceComposite : Node
     {
-        public SequenceComposite() { }
+        public SequenceComposite() { m_nodeType = "Sequence Composite Node"; }
 
         public override void OnDraw(PaintEventArgs e)
         {
@@ -93,10 +101,7 @@ namespace Behaviour_tree_tool
     {
         private PointF[] m_pointF = new PointF[4];
 
-        public SlectorComposite()
-        {
-
-        }
+        public SlectorComposite() { m_nodeType = "Slector Composite Node"; }
 
         public override void OnDraw(PaintEventArgs e)
         {
@@ -129,7 +134,7 @@ namespace Behaviour_tree_tool
     {
         private PointF[] m_pointF = new PointF[6];
 
-        public DecoratorComposite() { }
+        public DecoratorComposite() { m_nodeType = "Decorator Node"; }
 
         public override void OnDraw(PaintEventArgs e)
         {
@@ -167,7 +172,7 @@ namespace Behaviour_tree_tool
     {
         private PointF[] m_pointF = new PointF[4];
 
-        public RandomSlector() { }
+        public RandomSlector() { m_nodeType = "Random Slector Node"; }
 
         public override void OnDraw(PaintEventArgs e)
         {
@@ -200,7 +205,7 @@ namespace Behaviour_tree_tool
     {
         private PointF[] m_pointF = new PointF[4];
 
-        public SwitchSlector() { }
+        public SwitchSlector() { m_nodeType = "Switch Slector Node"; }
         
         public override void OnDraw(PaintEventArgs e)
         {

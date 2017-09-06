@@ -22,6 +22,9 @@ namespace Behaviour_tree_tool
 
         private bool m_isHealdDown = false;
 
+        private bool m_placeNode = false;
+        private bool m_shiftPressed = false;
+
         public Form2()
         {
             InitializeComponent();
@@ -63,29 +66,129 @@ namespace Behaviour_tree_tool
             foreach (Node node in m_nodes)
             {
                 node.OnDraw(e);
-            }            
+            }
         }
 
         private void Form2_MouseClick(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Right)
             {
-                m_mouse.m_nodeToPlace = NodeTypes.NULL;
-                m_mouse.m_slectedNodes.Clear();
-
-                this.Refresh();
-
-                return;
+                ClearMouseVars();
             }
 
+            DeslectSingle(e);
+
+            DeslectMultiple(e);
+
             SlectNode(e);
-         
-            if (m_mouse.m_nodeToPlace !=NodeTypes.NULL && m_mouse.m_slectedNodes.Count <= 0)
+
+            PlaceNode(e);
+
+        }
+
+        public void ClearMouseVars()
+        {
+            m_mouse.m_nodeToPlace = NodeTypes.NULL;
+            m_mouse.m_slectedNodes.Clear();
+
+            this.Refresh();
+        }
+
+        public void DeslectSingle(MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && m_mouse.m_slectedNodes.Count() == 1)
+            {
+                bool wasClicked = true;
+                foreach (Node node in m_mouse.m_slectedNodes)
+                {
+                    if (node.CheckIfClickedIn(e.X, e.Y) == false)
+                    {
+                        wasClicked = false;
+                    }
+                }
+
+                if (wasClicked == false)
+                {
+                    ClearMouseVars();
+                    this.Refresh();
+                }
+            }
+        }
+
+        public void DeslectMultiple(MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && m_mouse.m_slectedNodes.Count() > 1)
+            {
+                int bx, by, tx, ty;
+                bx = by = 1000000000;
+                tx = ty = 0;
+
+                foreach (Node node in m_mouse.m_slectedNodes)
+                {
+                    if (node.m_rect.X < bx)
+                    {
+                        bx = node.m_rect.X;
+                    }
+                    if (node.m_rect.Y < by)
+                    {
+                        by = node.m_rect.Y;
+                    }
+                    if ((node.m_rect.X + node.m_rect.Width) > tx)
+                    {
+                        tx = (node.m_rect.X + node.m_rect.Width);
+                    }
+                    if ((node.m_rect.Y + node.m_rect.Height) > ty)
+                    {
+                        ty = (node.m_rect.Y + node.m_rect.Height);
+                    }
+                }
+
+                bx -= 50;
+                by -= 50;
+                tx += 50;
+                by += 50;
+
+                if ((bx < e.X && tx > e.X &&
+                    by < e.Y && ty > e.Y) == false)
+                {
+                    ClearMouseVars();
+                    this.Refresh();
+                }
+            }
+        }
+        
+        public void SlectNode(MouseEventArgs e)
+        {
+            if (m_mouse.m_isDragging == false)
+            {
+                foreach (Node node in m_nodes)
+                {
+                    if (node.CheckIfClickedIn(e.X, e.Y))
+                    {
+                        m_mouse.m_slectedNodes.Clear();
+                        m_mouse.m_slectedNodes.Add(node);
+
+                        this.Refresh();
+
+                        return;
+                    }
+                }
+            }
+        }
+
+        public void PlaceNode(MouseEventArgs e)
+        {
+            if (m_mouse.m_nodeToPlace != NodeTypes.NULL && m_mouse.m_slectedNodes.Count <= 0 && m_placeNode == true)
             {
                 m_mouse.m_slectedNodes.Clear();
 
                 Node newNode = NodeToCreat();
+
+                if (m_shiftPressed == false)
+                {
+                    m_placeNode = false;
+                    ClearMouseVars();
+                }
 
                 if (newNode != null)
                 {
@@ -95,7 +198,6 @@ namespace Behaviour_tree_tool
                     this.Refresh();
                 }
             }
-
         }
 
         public Node NodeToCreat()
@@ -138,6 +240,7 @@ namespace Behaviour_tree_tool
             m_mouse.m_nodeToPlace = NodeTypes.SEQUENCECOMPOSITE;
             m_mouse.m_slectedNodes.Clear();
             m_mouse.m_isDragging = false;
+            m_placeNode = true;
         }
 
         private void slectorNodeToolStrip_Click(object sender, EventArgs e)
@@ -145,6 +248,7 @@ namespace Behaviour_tree_tool
             m_mouse.m_nodeToPlace = NodeTypes.SLECTORCOMPOSITE;
             m_mouse.m_slectedNodes.Clear();
             m_mouse.m_isDragging = false;
+            m_placeNode = true;
         }
         
         private void decoratorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -152,6 +256,7 @@ namespace Behaviour_tree_tool
             m_mouse.m_nodeToPlace = NodeTypes.DECORATOR;
             m_mouse.m_slectedNodes.Clear();
             m_mouse.m_isDragging = false;
+            m_placeNode = true;
         }
 
         private void randomSlectorNodeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -159,6 +264,7 @@ namespace Behaviour_tree_tool
             m_mouse.m_nodeToPlace = NodeTypes.RANDOMSLECTOR;
             m_mouse.m_slectedNodes.Clear();
             m_mouse.m_isDragging = false;
+            m_placeNode = true;
         }
 
         private void switchSlectorNodeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -166,6 +272,7 @@ namespace Behaviour_tree_tool
             m_mouse.m_nodeToPlace = NodeTypes.SWITCHSLECTOR;
             m_mouse.m_slectedNodes.Clear();
             m_mouse.m_isDragging = false;
+            m_placeNode = true;
         }
 
         private void actionNodeToolStrip_Click(object sender, EventArgs e)
@@ -173,6 +280,7 @@ namespace Behaviour_tree_tool
             m_mouse.m_nodeToPlace = NodeTypes.ACTIONNODE;
             m_mouse.m_slectedNodes.Clear();
             m_mouse.m_isDragging = false;
+            m_placeNode = true;
         }
 
         private void conditionNodeToolStrip_Click(object sender, EventArgs e)
@@ -180,6 +288,21 @@ namespace Behaviour_tree_tool
             m_mouse.m_nodeToPlace = NodeTypes.CONDITIONNODE;
             m_mouse.m_slectedNodes.Clear();
             m_mouse.m_isDragging = false;
+            m_placeNode = true;
+        }
+
+        private void Form2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void Form2_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                m_shiftPressed = false;
+                ClearMouseVars();
+            }
         }
 
         private void Form2_KeyDown(object sender, KeyEventArgs e)
@@ -195,6 +318,11 @@ namespace Behaviour_tree_tool
 
                 this.Refresh();
             }
+
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                m_shiftPressed = true;
+            }
         }
 
         private void Form2_MouseDown(object sender, MouseEventArgs e)
@@ -204,6 +332,10 @@ namespace Behaviour_tree_tool
 
         private void Form2_MouseMove(object sender, MouseEventArgs e)
         {
+            DeslectSingle(e);
+
+            DeslectMultiple(e);
+
             if (e.Button == MouseButtons.Left && m_mouse.m_slectedNodes.Count() <= 0 && m_mouse.m_nodeToPlace == NodeTypes.NULL)
             {
                 if (m_mouse.m_isDragging == false && m_mouse.m_slectedNodes.Count() <= 0)
@@ -274,24 +406,6 @@ namespace Behaviour_tree_tool
             py = e.Y;
         }
 
-        public void SlectNode(MouseEventArgs e)
-        {
-            if (m_mouse.m_isDragging == false)
-            {
-                foreach (Node node in m_nodes)
-                {
-                    if (node.CheckIfClickedIn(e.X, e.Y))
-                    {
-                        m_mouse.m_slectedNodes.Clear();
-                        m_mouse.m_slectedNodes.Add(node);
-
-                        this.Refresh();
-
-                        return;
-                    }
-                }
-            }
-        }
 
         public void BoxSlect()
         {

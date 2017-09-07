@@ -59,9 +59,25 @@ namespace Behaviour_tree_tool
                 ly = h;
             }
 
+            Pen pen = new Pen(Color.Black);
+
+            if (m_mouse.m_connectAsChild || m_mouse.m_connectAsParent)
+            {
+                g.DrawLine(pen,
+                    px,
+                    py,
+                    m_mouse.m_nodeToConnect.m_rect.X + (int)(m_mouse.m_nodeToConnect.m_rect.Width * 0.5f),
+                    m_mouse.m_nodeToConnect.m_rect.Y + (int)(m_mouse.m_nodeToConnect.m_rect.Height * 0.5f));
+            }
+
             g.FillRectangle(brush2, sx, sy, lx - sx, ly - sy);
 
             m_mouse.OnDraw(e);
+
+            foreach (Node node in m_nodes)
+            {
+                node.OnDrawConnections(e);
+            }
 
             foreach (Node node in m_nodes)
             {
@@ -90,6 +106,11 @@ namespace Behaviour_tree_tool
         {
             m_mouse.m_nodeToPlace = NodeTypes.NULL;
             m_mouse.m_slectedNodes.Clear();
+
+            m_mouse.m_nodeToConnect = null;
+
+            m_mouse.m_connectAsChild = false;
+            m_mouse.m_connectAsParent = false;
 
             this.Refresh();
         }
@@ -159,12 +180,25 @@ namespace Behaviour_tree_tool
         
         public void SlectNode(MouseEventArgs e)
         {
-            if (m_mouse.m_isDragging == false)
+            if (m_mouse.m_isDragging == false && m_mouse.m_connectAsChild == false && m_mouse.m_connectAsParent == false)
             {
                 foreach (Node node in m_nodes)
                 {
                     if (node.CheckIfClickedIn(e.X, e.Y))
                     {
+                        if (node.ChecIfClickedOnParentConnector(e.X, e.Y))
+                        {
+                            m_mouse.m_nodeToConnect = node;
+                            m_mouse.m_connectAsChild = true;
+                            return;
+                        }
+                        if (node.CheckIfClickedOnCildConector(e.X, e.Y))
+                        {
+                            m_mouse.m_nodeToConnect = node;
+                            m_mouse.m_connectAsParent = true;
+                            return;
+                        }
+
                         m_mouse.m_slectedNodes.Clear();
                         m_mouse.m_slectedNodes.Add(node);
 
@@ -174,8 +208,37 @@ namespace Behaviour_tree_tool
                     }
                 }
             }
-        }
+            else if (m_mouse.m_connectAsParent == true || m_mouse.m_connectAsChild == true)
+            {
 
+                if (m_mouse.m_nodeToConnect.CheckIfClickedIn(e.X, e.Y))
+                {
+                    return;
+                }
+
+                foreach (Node node in m_nodes)
+                {
+                    if (node.CheckIfClickedIn(e.X, e.Y))
+                    {
+                        if (m_mouse.m_connectAsChild)
+                        {
+                            node.SetChild(m_mouse.m_nodeToConnect);
+                            m_mouse.m_nodeToConnect.SetParent(node);
+                            ClearMouseVars();
+                            return;
+                        }
+                        else
+                        {
+                            node.SetParent(m_mouse.m_nodeToConnect);
+                            m_mouse.m_nodeToConnect.SetChild(node);
+                            ClearMouseVars();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        
         public void PlaceNode(MouseEventArgs e)
         {
             if (m_mouse.m_nodeToPlace != NodeTypes.NULL && m_mouse.m_slectedNodes.Count <= 0 && m_placeNode == true)
@@ -314,6 +377,19 @@ namespace Behaviour_tree_tool
                     m_nodes.Remove(node);
                 }
 
+                foreach (Node node in m_mouse.m_slectedNodes)
+                {
+                    foreach (Node p in node.m_parent)
+                    {
+                        p.m_children.Remove(node);
+                    }
+
+                    foreach (Node c in node.m_children)
+                    {
+                        c.m_parent.Remove(node);
+                    }
+                }
+
                 m_mouse.m_slectedNodes.Clear();
 
                 this.Refresh();
@@ -336,7 +412,7 @@ namespace Behaviour_tree_tool
 
             DeslectMultiple(e);
 
-            if (e.Button == MouseButtons.Left && m_mouse.m_slectedNodes.Count() <= 0 && m_mouse.m_nodeToPlace == NodeTypes.NULL)
+            if (e.Button == MouseButtons.Left && m_mouse.m_slectedNodes.Count() <= 0 && m_mouse.m_nodeToPlace == NodeTypes.NULL && m_mouse.m_nodeToConnect == null)
             {
                 if (m_mouse.m_isDragging == false && m_mouse.m_slectedNodes.Count() <= 0)
                 {
@@ -405,8 +481,7 @@ namespace Behaviour_tree_tool
             px = e.X;
             py = e.Y;
         }
-
-
+        
         public void BoxSlect()
         {
             if (lx < sx)

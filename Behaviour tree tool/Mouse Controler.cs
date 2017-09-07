@@ -25,6 +25,10 @@ namespace Behaviour_tree_tool
         public NodeTypes m_nodeToPlace = NodeTypes.NULL;
         public List<Node> m_slectedNodes = new List<Node>();
 
+        public Node m_nodeToConnect = null;
+        public bool m_connectAsChild = false;
+        public bool m_connectAsParent = false;
+
         public bool m_isDragging = false;
 
         public virtual void OnDraw(PaintEventArgs e)

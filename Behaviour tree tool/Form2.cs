@@ -7,27 +7,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Behaviour_tree_tool
 {
     public partial class Form2 : Form
     {
+        [XmlArray("List_Of_All_Nodes"), XmlArrayItem(typeof(Node), ElementName = "Node")]
         public List<Node> m_nodes = new List<Node>();
 
+        [XmlIgnore]
         private Mouse_Controler m_mouse = new Mouse_Controler();
 
+        [XmlIgnore]
+        private List<int> m_usedIDs = new List<int>();
+
+        [XmlIgnore]
         private int sx, sy, lx, ly;
 
+        [XmlIgnore]
         private int px, py;
 
+        [XmlIgnore]
         private bool m_isHealdDown = false;
 
+        [XmlIgnore]
         private bool m_placeNode = false;
+        
+        [XmlIgnore]
         private bool m_shiftPressed = false;
 
         public Form2()
         {
             InitializeComponent();
+            DisplayMyScrollableForm();
+        }
+
+        private void DisplayMyScrollableForm()
+        {
+            // Create a new form.
+            Form form2 = this;
+
+            // Set the AutoScroll property to true to provide scrollbars.
+            form2.AutoScroll = true;
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -257,6 +280,14 @@ namespace Behaviour_tree_tool
                 {
                     newNode.m_rect.X = e.X;
                     newNode.m_rect.Y = e.Y;
+                    
+                    while (newNode.ID == 0 || m_usedIDs.Contains(newNode.ID))
+                    {
+                        newNode.SetID();
+                    }
+
+                    m_usedIDs.Add(newNode.ID);
+
                     m_nodes.Add(newNode);
                     this.Refresh();
                 }
@@ -294,8 +325,6 @@ namespace Behaviour_tree_tool
                 default:
                     return null;
             }
-
-            return null;
         }
 
         private void sequenceNodeToolStrip_Click(object sender, EventArgs e)
@@ -375,6 +404,7 @@ namespace Behaviour_tree_tool
                 foreach (Node node in m_mouse.m_slectedNodes)
                 {
                     m_nodes.Remove(node);
+                    m_usedIDs.Remove(node.ID);
                 }
 
                 foreach (Node node in m_mouse.m_slectedNodes)
@@ -382,11 +412,13 @@ namespace Behaviour_tree_tool
                     foreach (Node p in node.m_parent)
                     {
                         p.m_children.Remove(node);
+                        p.m_childIDs.Remove(node.ID);
                     }
 
                     foreach (Node c in node.m_children)
                     {
                         c.m_parent.Remove(node);
+                        c.m_parentIDs.Remove(node.ID);
                     }
                 }
 
@@ -510,6 +542,60 @@ namespace Behaviour_tree_tool
             this.Refresh();
 
             sx = sy = lx = ly = 0;
+        }
+
+        public void Deserialize()
+        {
+            m_usedIDs.Clear();
+
+            foreach (Node n in m_nodes)
+            {
+                m_usedIDs.Add(n.ID);
+            }
+
+            SetActualPareents();
+
+            SetActualChildren();
+
+            this.Refresh();
+        }
+
+        private void SetActualPareents()
+        {
+            foreach (Node n in m_nodes)
+            {
+                n.m_parent.Clear();
+
+                foreach (int id in n.m_parentIDs)
+                {
+                    foreach (Node p in m_nodes)
+                    {
+                        if (id == p.ID)
+                        {
+                            n.m_parent.Add(p);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SetActualChildren()
+        {
+            foreach (Node n in m_nodes)
+            {
+                n.m_children.Clear();
+
+                foreach (int id in n.m_childIDs)
+                {
+                    foreach (Node c in m_nodes)
+                    {
+                        if (id == c.ID)
+                        {
+                            n.m_children.Add(c);
+                        }
+                    }
+                }
+            }
         }
     }
 }

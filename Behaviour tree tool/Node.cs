@@ -5,21 +5,74 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Behaviour_tree_tool
 {
+    [Serializable]
+    [XmlInclude(typeof(ActionNode))]
+    [XmlInclude(typeof(ConditionNode))]
+    [XmlInclude(typeof(SequenceComposite))]
+    [XmlInclude(typeof(SlectorComposite))]
+    [XmlInclude(typeof(DecoratorComposite))]
+    [XmlInclude(typeof(RandomSlector))]
+    [XmlInclude(typeof(SwitchSlector))]
     public class Node
     {
+        [XmlIgnore]
         public List<Node> m_parent = new List<Node>();
+
+        [XmlArray("List_Of_Node_Parents_IDs"), XmlArrayItem(typeof(int), ElementName = "Parent_Node_ID")]
+        public List<int> m_parentIDs = new List<int>();
+
+        [XmlIgnore]
         public List<Node> m_children = new List<Node>();
 
-        public int m_node = 0;
-        public string m_description = "Default Description";
-        public string m_nodeType = "Null";
+        [XmlArray("List_Of_Node_childrens_IDs"), XmlArrayItem(typeof(int), ElementName = "Child_Node_ID")]
+        public List<int> m_childIDs = new List<int>();
 
+        [XmlElement("Node_Num")]
+        public int m_node = 0;
+
+        [XmlElement("Node_Description")]
+        public string m_description = "Default Description";
+
+        [XmlElement("Node_Type")]
+        public string m_nodeType = "Null";
+        
+        [XmlElement("Node_Rect")]
         public Rectangle m_rect;
 
         protected float m_connectorRadius = 30;
+
+        protected int m_ID = 0;
+
+        [XmlElement("Node_ID")]
+        public int ID
+        {
+            get { return m_ID; }
+            set { m_ID = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            Node n = (Node)obj;
+
+            if (n is Node)
+            {
+                if (this.ID == n.ID)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         public Node()
         {
@@ -27,6 +80,13 @@ namespace Behaviour_tree_tool
             m_rect.Y = 0;
             m_rect.Width = 100;
             m_rect.Height = 100;
+        }
+
+        public void SetID()
+        {
+            Random r = new Random();
+            
+            m_ID = r.Next(0, 10) + r.Next(10, 100) +r.Next(100,1000) + r.Next(1000, 10000) + r.Next(10000, 100000);
         }
 
         public virtual void SetParent(Node n)
@@ -52,6 +112,7 @@ namespace Behaviour_tree_tool
             }
 
             m_parent.Add(n);
+            m_parentIDs.Add(n.ID);
         }
 
         public virtual void SetChild(Node n)
@@ -75,7 +136,9 @@ namespace Behaviour_tree_tool
             {
                 return;
             }
+
             m_children.Add(n);
+            m_childIDs.Add(n.ID);
         }
 
         public bool CheckIfClickedIn(int x, int y)
@@ -92,7 +155,7 @@ namespace Behaviour_tree_tool
 
         public virtual bool ChecIfClickedOnParentConnector(int x, int y)
         {
-            if (SqrMagnatude((m_rect.X + (int)(m_rect.Width * 0.37f)) - x, (m_rect.Y + (int)(m_rect.Height * 0.02f)) - y) < (m_connectorRadius * m_connectorRadius))
+            if (SqrMagnatude((m_rect.X + (int)(m_rect.Width * 0.36f)) - x, (m_rect.Y + (int)(m_rect.Height * 0.02f)) - y) < (m_connectorRadius * m_connectorRadius))
             {
                 return true;
             }
@@ -102,7 +165,7 @@ namespace Behaviour_tree_tool
 
         public virtual bool CheckIfClickedOnCildConector(int x, int y)
         {
-            if (SqrMagnatude((m_rect.X + (int)(m_rect.Width * 0.37f)) - x, (m_rect.Y + (int)(m_rect.Height * 0.7)) - y) < (m_connectorRadius * m_connectorRadius))
+            if (SqrMagnatude((m_rect.X + (int)(m_rect.Width * 0.36f)) - x, (m_rect.Y + (int)(m_rect.Height * 0.7)) - y) < (m_connectorRadius * m_connectorRadius))
             {
                 return true;
             }
@@ -139,47 +202,7 @@ namespace Behaviour_tree_tool
         public virtual void WriteToPython() { }
     }
 
-    //public class StartNode : Node
-    //{
-    //    private PointF[] m_pointF = new PointF[4];
-
-    //    public StartNode() { m_nodeType = "Start Node"; }
-
-    //    public override void OnDraw(PaintEventArgs e)
-    //    {
-    //        SetPoints();
-
-    //        Graphics g = e.Graphics;
-
-    //        Brush brush = new SolidBrush(Color.Blue);
-    //        g.FillPolygon(brush, m_pointF);
-
-    //        Brush connector = new SolidBrush(Color.Goldenrod);
-    //        g.FillPie(connector, (m_rect.X + (int)(m_rect.Width * 0.36f)), (m_rect.Y + (int)(m_rect.Height * 0.02f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
-    //    }
-
-    //    public void SetPoints()
-    //    {
-    //        m_pointF[0].X = m_rect.X;
-    //        m_pointF[0].Y = m_rect.Y + (m_rect.Height * 0.5f);
-
-    //        m_pointF[1].X = m_rect.X + (m_rect.Width * 0.5f);
-    //        m_pointF[1].Y = m_rect.Y;
-
-    //        m_pointF[2].X = m_rect.X + (m_rect.Width);
-    //        m_pointF[2].Y = m_rect.Y + (m_rect.Height * 0.5f);
-
-
-    //        m_pointF[3].X = m_rect.X + (m_rect.Width * 0.5f);
-    //        m_pointF[3].Y = m_rect.Y + (m_rect.Height);
-    //    }
-
-    //    public override bool ChecIfClickedOnParentConnector(int x, int y)
-    //    {
-    //        return false;
-    //    }
-    //}
-    
+    [Serializable]
     public class ActionNode : Node
     {
         public ActionNode() { m_nodeType = "Action Node"; }
@@ -206,6 +229,7 @@ namespace Behaviour_tree_tool
         }
     }
 
+    [Serializable]
     public class ConditionNode : Node
     {
         public ConditionNode() { m_nodeType = "Condition Node"; }
@@ -232,6 +256,7 @@ namespace Behaviour_tree_tool
         }
     }
 
+    [Serializable]
     public class SequenceComposite : Node
     {
         public SequenceComposite() { m_nodeType = "Sequence Composite Node"; }
@@ -252,6 +277,7 @@ namespace Behaviour_tree_tool
                
     }
 
+    [Serializable]
     public class SlectorComposite : Node
     {
         private PointF[] m_pointF = new PointF[4];
@@ -290,6 +316,7 @@ namespace Behaviour_tree_tool
         }
     }
 
+    [Serializable]
     public class DecoratorComposite : Node
     {
         private PointF[] m_pointF = new PointF[6];
@@ -335,6 +362,7 @@ namespace Behaviour_tree_tool
         }
     }
 
+    [Serializable]
     public class RandomSlector : Node
     {
         private PointF[] m_pointF = new PointF[4];
@@ -375,6 +403,7 @@ namespace Behaviour_tree_tool
         }
     }
 
+    [Serializable]
     public class SwitchSlector : Node
     {
         private PointF[] m_pointF = new PointF[4];
@@ -414,5 +443,4 @@ namespace Behaviour_tree_tool
             m_pointF[3].Y = m_rect.Y + (m_rect.Height);
         }
     }
-
 }

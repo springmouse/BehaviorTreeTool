@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace Behaviour_tree_tool
 {
@@ -19,6 +20,7 @@ namespace Behaviour_tree_tool
         {
             KeyPreview = true;
             InitializeComponent();
+            System.IO.Directory.CreateDirectory(Application.StartupPath + "/Saves");
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,18 +57,54 @@ namespace Behaviour_tree_tool
             saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.RestoreDirectory = true;
 
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                if ((myStream = saveFileDialog1.OpenFile()) != null)
-                {
+            Form2 saveForm = (Form2)this.ActiveMdiChild;
 
-                    myStream.Close();
+            if (saveForm is Form2)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    if ((myStream = saveFileDialog1.OpenFile()) != null)
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(List<Node>));
+
+                        StreamWriter sw = new StreamWriter(myStream);
+                        
+                        serializer.Serialize(sw, saveForm.m_nodes);
+
+                        myStream.Close();
+                    }
                 }
             }
+
+
+
         }
         
         public void OpenFile()
         {
+            Stream myStream;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "xml files (*.xml)|*.xml";
+            openFileDialog.FilterIndex = 1;
+
+            Form2 newForm = new Form2();
+            newForm.MdiParent = this;
+            newForm.Show();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = openFileDialog.OpenFile()) != null)
+                {
+                    XmlSerializer mySerializer = new XmlSerializer(typeof(List<Node>));
+
+                    StreamReader SR = new StreamReader(myStream);
+
+                    newForm.m_nodes = mySerializer.Deserialize(SR) as List<Node>;
+
+                    newForm.Deserialize();
+                }
+            }
 
         }
         

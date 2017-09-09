@@ -153,9 +153,9 @@ namespace Behaviour_tree_tool
             return false;
         }
 
-        public virtual bool ChecIfClickedOnParentConnector(int x, int y)
+        public virtual bool ChecIfClickedOnParentConnector(float x, float y)
         {
-            if (SqrMagnatude((m_rect.X + (int)(m_rect.Width * 0.36f)) - x, (m_rect.Y + (int)(m_rect.Height * 0.02f)) - y) < (m_connectorRadius * m_connectorRadius))
+            if (SqrMagnatude((m_rect.X + (m_rect.Width * 0.36f)) - x, (m_rect.Y + (m_rect.Height * 0.02f)) - y) < (m_connectorRadius * m_connectorRadius))
             {
                 return true;
             }
@@ -163,9 +163,9 @@ namespace Behaviour_tree_tool
             return false;
         }
 
-        public virtual bool CheckIfClickedOnCildConector(int x, int y)
+        public virtual bool CheckIfClickedOnCildConector(float x, float y)
         {
-            if (SqrMagnatude((m_rect.X + (int)(m_rect.Width * 0.36f)) - x, (m_rect.Y + (int)(m_rect.Height * 0.7)) - y) < (m_connectorRadius * m_connectorRadius))
+            if (SqrMagnatude((m_rect.X + (m_rect.Width * 0.36f)) - x, (m_rect.Y + (m_rect.Height * 0.7f)) - y) < (m_connectorRadius * m_connectorRadius))
             {
                 return true;
             }
@@ -191,7 +191,7 @@ namespace Behaviour_tree_tool
             }
         }
         
-        public float SqrMagnatude(int x, int y)
+        public float SqrMagnatude(float x, float y)
         {
             return ((x * x) + (y*y));
         }
@@ -215,10 +215,10 @@ namespace Behaviour_tree_tool
             g.FillPie(brush, m_rect, 0.0f, 360.0f);
 
             Brush connector = new SolidBrush(Color.LightCoral);
-            g.FillPie(connector, (m_rect.X + (int)(m_rect.Width * 0.36f)), (m_rect.Y + (int)(m_rect.Height * 0.02f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
+            g.FillPie(connector, (m_rect.X + (m_rect.Width * 0.36f)), (m_rect.Y + (m_rect.Height * 0.02f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
         }
 
-        public override bool CheckIfClickedOnCildConector(int x, int y)
+        public override bool CheckIfClickedOnCildConector(float x, float y)
         {
             return false;
         }
@@ -245,7 +245,7 @@ namespace Behaviour_tree_tool
             g.FillPie(connector, (m_rect.X + (int)(m_rect.Width * 0.36f)), (m_rect.Y + (int)(m_rect.Height * 0.02f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
         }
 
-        public override bool CheckIfClickedOnCildConector(int x, int y)
+        public override bool CheckIfClickedOnCildConector(float x, float y)
         {
             return false;
         }
@@ -294,9 +294,9 @@ namespace Behaviour_tree_tool
             g.FillPolygon(brush, m_pointF);
 
             Brush connector = new SolidBrush(Color.LightCoral);
-            g.FillPie(connector, (m_rect.X + (int)(m_rect.Width * 0.36f)), (m_rect.Y + (int)(m_rect.Height * 0.7f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
+            g.FillPie(connector, (m_rect.X + (float)(m_rect.Width * 0.36f)), (m_rect.Y + (float)(m_rect.Height * 0.7f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
 
-            g.FillPie(connector, (m_rect.X + (int)(m_rect.Width * 0.36f)), (m_rect.Y + (int)(m_rect.Height * 0.02f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
+            g.FillPie(connector, (m_rect.X + (float)(m_rect.Width * 0.36f)), (m_rect.Y + (float)(m_rect.Height * 0.02f)), m_connectorRadius, m_connectorRadius, 0.0f, 360f);
         }
 
         public void SetPoints()

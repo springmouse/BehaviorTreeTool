@@ -14,6 +14,14 @@ namespace Behaviour_tree_tool
 {
     public partial class Form1 : Form
     {
+        private enum ExportType
+        {
+            CPP,
+            CS,
+            JV,
+            ALL
+        }
+
         private List<Keys> m_keyCurrentlyPressed = new List<Keys>();
 
         public Form1()
@@ -21,6 +29,7 @@ namespace Behaviour_tree_tool
             KeyPreview = true;
             InitializeComponent();
             System.IO.Directory.CreateDirectory(Application.StartupPath + "/Saves");
+            System.IO.Directory.CreateDirectory(Application.StartupPath + "/Exports");
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,7 +62,7 @@ namespace Behaviour_tree_tool
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-            saveFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            saveFileDialog1.Filter = "xml files (*.xml)|*.xml";
             saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.RestoreDirectory = true;
 
@@ -74,10 +83,7 @@ namespace Behaviour_tree_tool
                         myStream.Close();
                     }
                 }
-            }
-
-
-
+            }            
         }
         
         public void OpenFile()
@@ -107,32 +113,7 @@ namespace Behaviour_tree_tool
             }
 
         }
-        
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pastToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void updateTimer_Tick(object sender, EventArgs e)
-        {
-            
-        }
-        
+                        
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (!m_keyCurrentlyPressed.Contains((Keys)e.KeyValue))
@@ -164,5 +145,60 @@ namespace Behaviour_tree_tool
         {
             m_keyCurrentlyPressed.Remove((Keys)e.KeyValue);
         }
+
+        private void csToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DefineExportType(ExportType.CS);
+        }
+
+        private void cppToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DefineExportType(ExportType.CPP);
+        }
+
+        private void javaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DefineExportType(ExportType.JV);
+        }
+
+        private void allToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DefineExportType(ExportType.ALL);
+        }
+
+        private void DefineExportType(ExportType type)
+        {
+            Form2 activeForm = (Form2)this.ActiveMdiChild;
+
+            if (activeForm.CheckTreeIsAllConnected())
+            {
+                switch (type)
+                {
+                    case ExportType.CPP:
+                        
+                        return;
+
+                    case ExportType.CS:
+
+                        return;
+
+                    case ExportType.JV:
+
+                        return;
+                        
+                    case ExportType.ALL:
+
+                        return;
+
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Not all of your tree is connected up");
+            }
+        }
+
     }
 }

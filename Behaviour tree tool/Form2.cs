@@ -17,6 +17,9 @@ namespace Behaviour_tree_tool
         public List<Node> m_nodes = new List<Node>();
 
         [XmlIgnore]
+        private Node m_startNode = null;
+
+        [XmlIgnore]
         private Mouse_Controler m_mouse = new Mouse_Controler();
 
         [XmlIgnore]
@@ -33,7 +36,7 @@ namespace Behaviour_tree_tool
 
         [XmlIgnore]
         private bool m_placeNode = false;
-        
+
         [XmlIgnore]
         private bool m_shiftPressed = false;
 
@@ -50,7 +53,7 @@ namespace Behaviour_tree_tool
 
             // Set the AutoScroll property to true to provide scrollbars.
             form2.AutoScroll = true;
-            
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -200,7 +203,7 @@ namespace Behaviour_tree_tool
                 }
             }
         }
-        
+
         public void SlectNode(MouseEventArgs e)
         {
             if (m_mouse.m_isDragging == false && m_mouse.m_connectAsChild == false && m_mouse.m_connectAsParent == false)
@@ -261,7 +264,7 @@ namespace Behaviour_tree_tool
                 }
             }
         }
-        
+
         public void PlaceNode(MouseEventArgs e)
         {
             if (m_mouse.m_nodeToPlace != NodeTypes.NULL && m_mouse.m_slectedNodes.Count <= 0 && m_placeNode == true)
@@ -280,7 +283,7 @@ namespace Behaviour_tree_tool
                 {
                     newNode.m_rect.X = e.X;
                     newNode.m_rect.Y = e.Y;
-                    
+
                     while (newNode.ID == 0 || m_usedIDs.Contains(newNode.ID))
                     {
                         newNode.SetID();
@@ -303,25 +306,25 @@ namespace Behaviour_tree_tool
 
                 case NodeTypes.CONDITIONNODE:
                     return new ConditionNode();
-                    
+
                 case NodeTypes.SEQUENCECOMPOSITE:
                     return new SequenceComposite();
-                    
+
                 case NodeTypes.SLECTORCOMPOSITE:
                     return new SlectorComposite();
-                    
+
                 case NodeTypes.DECORATOR:
                     return new DecoratorComposite();
-                   
+
                 case NodeTypes.RANDOMSLECTOR:
                     return new RandomSlector();
-                    
+
                 case NodeTypes.SWITCHSLECTOR:
                     return new SwitchSlector();
-                    
+
                 case NodeTypes.NULL:
                     return null;
-                    
+
                 default:
                     return null;
             }
@@ -342,7 +345,7 @@ namespace Behaviour_tree_tool
             m_mouse.m_isDragging = false;
             m_placeNode = true;
         }
-        
+
         private void decoratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_mouse.m_nodeToPlace = NodeTypes.DECORATOR;
@@ -385,7 +388,7 @@ namespace Behaviour_tree_tool
 
         private void Form2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
         }
 
         private void Form2_KeyUp(object sender, KeyEventArgs e)
@@ -431,11 +434,16 @@ namespace Behaviour_tree_tool
             {
                 m_shiftPressed = true;
             }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                CheckTreeIsAllConnected();
+            }
         }
 
         private void Form2_MouseDown(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void Form2_MouseMove(object sender, MouseEventArgs e)
@@ -509,11 +517,11 @@ namespace Behaviour_tree_tool
             {
                 m_isHealdDown = false;
             }
-            
+
             px = e.X;
             py = e.Y;
         }
-        
+
         public void BoxSlect()
         {
             if (lx < sx)
@@ -596,6 +604,74 @@ namespace Behaviour_tree_tool
                     }
                 }
             }
+        }
+
+        public bool CheckTreeIsAllConnected()
+        {
+            m_startNode = GetTreeStartNode();
+
+            List<Node> closedNodes = new List<Node>();
+
+            List<Node> gatherNodes = new List<Node>();
+            List<Node> openNodes = new List<Node>();
+
+            closedNodes.Clear();
+            gatherNodes.Clear();
+            openNodes.Clear();
+
+            if (m_startNode != null)
+            {
+                closedNodes.Add(m_startNode);
+
+                foreach (Node node in m_startNode.m_children)
+                {
+                    openNodes.Add(node);
+                }
+
+                while (openNodes.Count() > 0)
+                {
+                    foreach (Node o in openNodes)
+                    {
+                        closedNodes.Add(o);
+                        gatherNodes.Add(o);
+                    }
+
+                    openNodes.Clear();
+
+                    foreach (Node g in gatherNodes)
+                    {
+                        foreach (Node c in g.m_children)
+                        {
+                            openNodes.Add(c);
+                        };
+                    }
+
+                    gatherNodes.Clear();
+                }
+
+                if (closedNodes.Count() == m_nodes.Count())
+                {
+                    return true;
+                }
+            }
+
+           return false;
+
+        }
+
+        private Node GetTreeStartNode()
+        {
+
+            foreach (Node n in m_nodes)
+            {
+                if (n.m_parent.Count() == 0)
+                {
+                    return n;
+                }
+            }
+
+            return null;
+
         }
     }
 }

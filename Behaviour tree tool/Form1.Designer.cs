@@ -36,7 +36,6 @@
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.javaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -91,7 +90,6 @@
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cToolStripMenuItem,
             this.cToolStripMenuItem1,
-            this.javaToolStripMenuItem,
             this.allToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
@@ -110,13 +108,6 @@
             this.cToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.cToolStripMenuItem1.Text = "&CPP";
             this.cToolStripMenuItem1.Click += new System.EventHandler(this.cppToolStripMenuItem1_Click);
-            // 
-            // javaToolStripMenuItem
-            // 
-            this.javaToolStripMenuItem.Name = "javaToolStripMenuItem";
-            this.javaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.javaToolStripMenuItem.Text = "&Java";
-            this.javaToolStripMenuItem.Click += new System.EventHandler(this.javaToolStripMenuItem_Click);
             // 
             // allToolStripMenuItem
             // 
@@ -162,7 +153,6 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem javaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
     }
 }

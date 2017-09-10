@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>72960</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>0</Node_Num>
+    <Node_Description>Do Other thing!</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>381</X>
+        <Y>567</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>381</X>
+      <Y>567</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>40953</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>72960</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>1</Node_Num>
+    <Node_Description>Do thing!</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>252</X>
+        <Y>563</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>252</X>
+      <Y>563</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>38117</Node_ID>
+  </Node>
+  <Node xsi:type="ConditionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>72960</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>2</Node_Num>
+    <Node_Description>thing?</Node_Description>
+    <Node_Type>Condition Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>123</X>
+        <Y>561</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>123</X>
+      <Y>561</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>104156</Node_ID>
+  </Node>
+  <Node xsi:type="SlectorComposite">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>91366</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>40953</Child_Node_ID>
+      <Child_Node_ID>38117</Child_Node_ID>
+      <Child_Node_ID>104156</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>3</Node_Num>
+    <Node_Description>Testlingz</Node_Description>
+    <Node_Type>Slector Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>265</X>
+        <Y>364</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>265</X>
+      <Y>364</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>72960</Node_ID>
+  </Node>
+  <Node xsi:type="SequenceComposite">
+    <List_Of_Node_Parents_IDs />
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>72960</Child_Node_ID>
+      <Child_Node_ID>40549</Child_Node_ID>
+      <Child_Node_ID>90259</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>4</Node_Num>
+    <Node_Description>Start Node</Node_Description>
+    <Node_Type>Sequence Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>521</X>
+        <Y>95</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>521</X>
+      <Y>95</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>91366</Node_ID>
+  </Node>
+  <Node xsi:type="RandomSlector">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>91366</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>51734</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>5</Node_Num>
+    <Node_Description>bad logic</Node_Description>
+    <Node_Type>Random Slector Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>521</X>
+        <Y>345</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>521</X>
+      <Y>345</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>40549</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>40549</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>9</Node_Num>
+    <Node_Description>A Bad Node</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>523</X>
+        <Y>576</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>523</X>
+      <Y>576</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>51734</Node_ID>
+  </Node>
+  <Node xsi:type="DecoratorComposite">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>91366</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>61670</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>15</Node_Num>
+    <Node_Description>Default Description</Node_Description>
+    <Node_Type>Decorator Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>706</X>
+        <Y>347</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>706</X>
+      <Y>347</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>90259</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>90259</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>16</Node_Num>
+    <Node_Description>Default Description</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>706</X>
+        <Y>567</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>706</X>
+      <Y>567</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>61670</Node_ID>
+  </Node>
+</ArrayOfNode>

@@ -52,7 +52,7 @@
             this.toolStripDropDownQuestionsAndActions});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(30, 262);
+            this.toolStrip1.Size = new System.Drawing.Size(32, 2000);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -68,7 +68,7 @@
             this.toolStripCompositeNodes.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCompositeNodes.Image")));
             this.toolStripCompositeNodes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripCompositeNodes.Name = "toolStripCompositeNodes";
-            this.toolStripCompositeNodes.Size = new System.Drawing.Size(27, 20);
+            this.toolStripCompositeNodes.Size = new System.Drawing.Size(29, 20);
             this.toolStripCompositeNodes.Text = "Composite Nodes";
             // 
             // sequenceNodeToolStrip
@@ -141,16 +141,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(1000, 1000);
+            this.AutoScrollMinSize = new System.Drawing.Size(1000, 1000);
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Form2";
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form2_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form2_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form2_KeyUp);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseClick);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseMove);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

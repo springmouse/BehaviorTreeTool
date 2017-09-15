@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Node xsi:type="SequenceComposite">
+    <List_Of_Node_Parents_IDs />
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>101991</Child_Node_ID>
+      <Child_Node_ID>76763</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>12</Node_Num>
+    <Node_Description>chase</Node_Description>
+    <Node_Type>Sequence Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>426</X>
+        <Y>109</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>426</X>
+      <Y>109</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>42542</Node_ID>
+  </Node>
+  <Node xsi:type="SequenceComposite">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>42542</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>25198</Child_Node_ID>
+      <Child_Node_ID>26283</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>13</Node_Num>
+    <Node_Description>check enemy close</Node_Description>
+    <Node_Type>Sequence Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>185</X>
+        <Y>364</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>185</X>
+      <Y>364</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>101991</Node_ID>
+  </Node>
+  <Node xsi:type="SequenceComposite">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>42542</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>47224</Child_Node_ID>
+      <Child_Node_ID>52482</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>14</Node_Num>
+    <Node_Description>Default Description</Node_Description>
+    <Node_Type>Sequence Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>623</X>
+        <Y>361</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>623</X>
+      <Y>361</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>76763</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>101991</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>15</Node_Num>
+    <Node_Description>move to enemy</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>247</X>
+        <Y>534</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>247</X>
+      <Y>534</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>26283</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>76763</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>16</Node_Num>
+    <Node_Description>attack enemy</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>704</X>
+        <Y>533</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>704</X>
+      <Y>533</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>52482</Node_ID>
+  </Node>
+  <Node xsi:type="ConditionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>101991</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>17</Node_Num>
+    <Node_Description>check if can see enemy</Node_Description>
+    <Node_Type>Condition Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>111</X>
+        <Y>532</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>111</X>
+      <Y>532</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>25198</Node_ID>
+  </Node>
+  <Node xsi:type="ConditionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>76763</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>18</Node_Num>
+    <Node_Description>enemy within attack range</Node_Description>
+    <Node_Type>Condition Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>542</X>
+        <Y>538</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>542</X>
+      <Y>538</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>47224</Node_ID>
+  </Node>
+</ArrayOfNode>

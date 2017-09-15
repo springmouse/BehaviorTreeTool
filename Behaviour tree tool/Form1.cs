@@ -40,7 +40,7 @@ namespace Behaviour_tree_tool
 
         /* this holds all the keys you are currently holding for macros */
         private List<Keys> m_keyCurrentlyPressed = new List<Keys>();
-
+        
         /*
         * Function: Constructor
         * ---------------------
@@ -173,7 +173,9 @@ namespace Behaviour_tree_tool
                         myStream.Close();
                     }
                 }
-            }            
+            }
+
+            m_keyCurrentlyPressed.Clear();
         }
 
         /*
@@ -222,6 +224,7 @@ namespace Behaviour_tree_tool
                 }
             }
 
+            m_keyCurrentlyPressed.Clear();
         }
 
         /*
@@ -348,6 +351,8 @@ namespace Behaviour_tree_tool
 
             StreamWriter sw = null;
 
+            m_keyCurrentlyPressed.Clear();
+
             if (activeForm != null)
             {
                 if (activeForm.CheckTreeIsAllConnected())
@@ -451,6 +456,6 @@ namespace Behaviour_tree_tool
 
             }
         }
-
+        
     }
 }

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Node xsi:type="SlectorComposite">
+    <List_Of_Node_Parents_IDs />
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>93656</Child_Node_ID>
+      <Child_Node_ID>16407</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>0</Node_Num>
+    <Node_Description>fill stats</Node_Description>
+    <Node_Type>Slector Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>571</X>
+        <Y>12</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>571</X>
+      <Y>12</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>17898</Node_ID>
+  </Node>
+  <Node xsi:type="SequenceComposite">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>17898</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>25122</Child_Node_ID>
+      <Child_Node_ID>56808</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>1</Node_Num>
+    <Node_Description>Check hunger</Node_Description>
+    <Node_Type>Sequence Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>394</X>
+        <Y>250</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>394</X>
+      <Y>250</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>93656</Node_ID>
+  </Node>
+  <Node xsi:type="SequenceComposite">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>17898</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>20400</Child_Node_ID>
+      <Child_Node_ID>26853</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>2</Node_Num>
+    <Node_Description>Check thirst</Node_Description>
+    <Node_Type>Sequence Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>706</X>
+        <Y>273</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>706</X>
+      <Y>273</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>16407</Node_ID>
+  </Node>
+  <Node xsi:type="ConditionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>93656</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>4</Node_Num>
+    <Node_Description>Hunger &lt; 50</Node_Description>
+    <Node_Type>Condition Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>229</X>
+        <Y>410</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>229</X>
+      <Y>410</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>25122</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>16407</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>6</Node_Num>
+    <Node_Description>Drink from bottle</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>785</X>
+        <Y>451</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>785</X>
+      <Y>451</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>26853</Node_ID>
+  </Node>
+  <Node xsi:type="ConditionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>16407</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>7</Node_Num>
+    <Node_Description>thirst &lt; 50</Node_Description>
+    <Node_Type>Condition Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>627</X>
+        <Y>442</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>627</X>
+      <Y>442</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>20400</Node_ID>
+  </Node>
+  <Node xsi:type="SequenceComposite">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>93656</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>69696</Child_Node_ID>
+      <Child_Node_ID>58303</Child_Node_ID>
+      <Child_Node_ID>38444</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>8</Node_Num>
+    <Node_Description>is food with in range</Node_Description>
+    <Node_Type>Sequence Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>392</X>
+        <Y>484</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>392</X>
+      <Y>484</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>56808</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>56808</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>9</Node_Num>
+    <Node_Description>Gather food</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>493</X>
+        <Y>705</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>493</X>
+      <Y>705</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>69696</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>56808</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>12</Node_Num>
+    <Node_Description>move towards food</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>247</X>
+        <Y>695</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>247</X>
+      <Y>695</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>58303</Node_ID>
+  </Node>
+  <Node xsi:type="ConditionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>56808</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>13</Node_Num>
+    <Node_Description>food.pos &lt; range</Node_Description>
+    <Node_Type>Condition Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>373</X>
+        <Y>701</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>373</X>
+      <Y>701</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>38444</Node_ID>
+  </Node>
+</ArrayOfNode>

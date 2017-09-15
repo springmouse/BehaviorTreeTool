@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>42696</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>0</Node_Num>
+    <Node_Description>Default Description</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>204</X>
+        <Y>346</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>204</X>
+      <Y>346</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>47584</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>42696</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>1</Node_Num>
+    <Node_Description>Default Description</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>345</X>
+        <Y>415</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>345</X>
+      <Y>415</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>80615</Node_ID>
+  </Node>
+  <Node xsi:type="ActionNode">
+    <List_Of_Node_Parents_IDs>
+      <Parent_Node_ID>42696</Parent_Node_ID>
+    </List_Of_Node_Parents_IDs>
+    <List_Of_Node_childrens_IDs />
+    <Node_Num>2</Node_Num>
+    <Node_Description>Default Description</Node_Description>
+    <Node_Type>Action Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>489</X>
+        <Y>358</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>489</X>
+      <Y>358</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>37848</Node_ID>
+  </Node>
+  <Node xsi:type="SlectorComposite">
+    <List_Of_Node_Parents_IDs />
+    <List_Of_Node_childrens_IDs>
+      <Child_Node_ID>47584</Child_Node_ID>
+      <Child_Node_ID>80615</Child_Node_ID>
+      <Child_Node_ID>37848</Child_Node_ID>
+    </List_Of_Node_childrens_IDs>
+    <Node_Num>3</Node_Num>
+    <Node_Description>Default Description</Node_Description>
+    <Node_Type>Slector Composite Node</Node_Type>
+    <Node_Rect>
+      <Location>
+        <X>363</X>
+        <Y>189</Y>
+      </Location>
+      <Size>
+        <Width>100</Width>
+        <Height>100</Height>
+      </Size>
+      <X>363</X>
+      <Y>189</Y>
+      <Width>100</Width>
+      <Height>100</Height>
+    </Node_Rect>
+    <Node_ID>42696</Node_ID>
+  </Node>
+</ArrayOfNode>
